@@ -1,0 +1,25 @@
+{
+    "name": "cjs/phpunit",
+    "description": "The jelly phpunit package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jelly",
+            "email": "42282367@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "classmap": [
+
+        ],
+        "files": [
+            "src/Helpers.php"
+        ],
+        "psr-4": {
+            "CjsPhpunit\\": "src/"
+        }
+    }
+}

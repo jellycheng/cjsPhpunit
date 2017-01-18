@@ -5,6 +5,8 @@ class TestApp {
 
     protected static $instance = null;
     protected $path = [];
+    protected $frameWorkType = 'lsf'; //框架类型
+    protected $log;
 
     public static function create()
     {
@@ -51,5 +53,41 @@ class TestApp {
         }
         return $this->getTestBasePath() . 'schemas/';
     }
+
+    /**
+     * 设置框架类型
+     * @param string $frameWorkType
+     */
+    public function setFrameWorkType($frameWorkType)
+    {
+        $this->frameWorkType = $frameWorkType;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrameWorkType()
+    {
+        return $this->frameWorkType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLog()
+    {
+        return $this->log;
+    }
+
+    /**
+     * @param mixed $log
+     */
+    public function setLog($log)
+    {
+        $this->log = $log;
+        return $this;
+    }
+
 
 }

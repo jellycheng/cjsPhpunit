@@ -78,9 +78,30 @@ class TestCaseBase extends \PHPUnit_Framework_TestCase {
 
     protected function invoke()
     {
+        $args   = func_get_args();
+        $method = array_shift($args);
+        $output = '';
+        switch (TestApp::create()->getFrameWorkType()) {
+            case 'lsf':
+                $output = call_user_func_array("\\Paf\\Lsf\\Core\\App::invokeMethod", [$method, $args]);
+                TestApp::create()->getLog()->debugLog($method,$args, $output);
+                break;
+            case 'laravel4':
 
+                break;
+            case 'laravel5':
+
+                break;
+        }
+        return $output;
     }
 
-
+    protected function exitIfNotTestDatabase($database)
+    {
+        if (strpos($database, 'test') === false) {
+            echo "$database is not a test database!!!";
+            exit;
+        }
+    }
 
 }

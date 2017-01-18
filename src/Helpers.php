@@ -24,3 +24,14 @@ function env($key, $default = null)
     return $value;
 }
 
+
+function value($value)
+{
+    return $value instanceof \Closure ? $value() : $value;
+}
+
+function with($object)
+{
+    return $object;
+}
+

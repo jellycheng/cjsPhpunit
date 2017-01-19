@@ -17,4 +17,18 @@ if(file_exists($vendorFile)) {
             require $file;
         }
     });
+
+    spl_autoload_register(function ($class) {
+        $ns = 'AppDemo';
+        $base_dir = __DIR__ . '/AppDemo';
+        $prefix_len = strlen($ns);
+        if (substr($class, 0, $prefix_len) !== $ns) {
+            return;
+        }
+        $class = substr($class, $prefix_len);
+        $file = $base_dir .str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+        if (is_readable($file)) {
+            require $file;
+        }
+    });
 }

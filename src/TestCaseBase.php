@@ -92,6 +92,18 @@ class TestCaseBase extends \PHPUnit_Framework_TestCase {
             case 'laravel5':
 
                 break;
+            case 'phpunit':
+                $tmp = explode('.', $method);
+                $cls = $tmp[0];
+                $method =  \CjsPhpunit\array_get($tmp, '1', 'hello');
+                if(class_exists($cls)) {
+                    $output = call_user_func_array([new $cls, $method], (array)$args);
+                    echo $output;
+                } else {
+                    echo  PHP_EOL . 'class not exists: ' . $cls . PHP_EOL;
+                }
+                //TestApp::create()->getLog()->debugLog($method, $args, $output);
+                break;
         }
         return $output;
     }

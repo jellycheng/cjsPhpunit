@@ -35,3 +35,22 @@ function with($object)
     return $object;
 }
 
+
+function array_get($array, $key, $default = null)
+{
+    if (is_null($key)) return $array;
+    if (isset($array[$key])) return $array[$key];
+    $keyA = explode('.', $key);
+    foreach ($keyA as $segment)
+    {// a.b.c
+        if ( ! is_array($array) || ! array_key_exists($segment, $array))
+        {   //不存在的key则返回默认值
+            return $default instanceof \Closure ? $default() : $default;
+        }
+
+        $array = $array[$segment];
+    }
+
+    return $array;
+}
+

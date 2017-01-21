@@ -54,3 +54,22 @@ function array_get($array, $key, $default = null)
     return $array;
 }
 
+function printInfo($msg) {
+    if(is_array($msg)) {
+        $msg = var_export($msg, true);
+    }
+    if(isWin()) {
+        echo mb_convert_encoding($msg, 'gbk', 'utf-8');
+    } else {
+        echo $msg . PHP_EOL;
+    }
+
+}
+
+function isWin() {
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        return true;
+    } else {
+        return false;
+    }
+}

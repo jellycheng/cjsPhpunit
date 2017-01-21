@@ -95,14 +95,21 @@ class TestCaseBase extends \PHPUnit_Framework_TestCase {
             case 'phpunit':
                 $tmp = explode('.', $method);
                 $cls = $tmp[0];
-                $method =  \CjsPhpunit\array_get($tmp, '1', 'hello');
+                $method =  \CjsPhpunit\array_get($tmp, '1', '');
                 if(class_exists($cls)) {
-                    $output = call_user_func_array([new $cls, $method], (array)$args);
-                    echo $output;
+                    if(!$method) {
+                        \CjsPhpunit\printInfo(PHP_EOL . 'class ' . $cls . ' method "' . $method . '" not exists');
+                    } else {
+                        if(!is_array($args)) {
+                            $args = array($args);
+                        }
+                        $output = call_user_func_array([new $cls, $method], $args);
+                        //\CjsPhpunit\printInfo($output);
+                    }
                 } else {
-                    echo  PHP_EOL . 'class not exists: ' . $cls . PHP_EOL;
+                    \CjsPhpunit\printInfo(PHP_EOL . 'class not exists: ' . $cls);
                 }
-                //TestApp::create()->getLog()->debugLog($method, $args, $output);
+                TestApp::create()->getLog()->debugLog($method, $args, $output);
                 break;
         }
         return $output;

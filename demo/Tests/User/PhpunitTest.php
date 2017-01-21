@@ -8,6 +8,12 @@ use CjsPhpunit\TestCaseBase;
  */
 class PhpunitTest extends TestCaseBase {
 
+    /**
+     * 测试phpunit环境是否Ok用例
+     *
+     * 场景1 测试环境是否ok
+     * @author jelly
+     */
     public function testWelcome() {
         $res = $this->invoke('\\AppDemo\\User\\Phpunit.welcome', "cjs");
         $this->assertEquals("welcome cjs", $res);

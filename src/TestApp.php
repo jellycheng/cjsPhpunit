@@ -17,6 +17,14 @@ class TestApp {
         return self::$instance;
     }
 
+    /**
+     * @return null
+     */
+    public static function getInstance()
+    {
+        return self::$instance;
+    }
+
     public function setTestBasePath($path) {
         $this->path['basePath'] = $path;
         return $this;
@@ -55,6 +63,30 @@ class TestApp {
     }
 
     /**
+     * @param array|string $key
+     * @param string $val
+     */
+    public function setPath($key, $val = null)
+    {
+        if(is_array($key)) {
+            $this->path = array_merge($this->path, $key);
+        } else {
+            $this->path[$key] = $val;
+        }
+        return $this;
+    }
+
+    public function getPath($key = null)
+    {
+        if(is_null($key)) {
+            return $this->path;
+        } else if(isset($this->path[$key])) {
+            return $this->path[$key];
+        }
+        return '';
+    }
+
+    /**
      * 设置框架类型
      * @param string $frameWorkType
      */
@@ -77,7 +109,7 @@ class TestApp {
      */
     public function getLog()
     {
-        return $this->log;
+        return $this->log?: EmptyImpl::create();
     }
 
     /**

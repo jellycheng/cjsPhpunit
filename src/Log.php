@@ -16,6 +16,9 @@ class Log {
     public function debugLog() {
         $args   = func_get_args();
         $logPath = TestApp::create()->getPath('logPath');
+        if(!$logPath) {
+            $logPath = isset($_ENV['APP_TEST_LOG_DIR'])?$_ENV['APP_TEST_LOG_DIR']:'';
+        }
         if(!is_dir($logPath)) {
             @mkdir($logPath, 0700, true);
         }
@@ -35,6 +38,12 @@ class Log {
             file_put_contents($filename, $msg, FILE_APPEND);
         }
 
+    }
+
+
+    public function __call($name, $arguments)
+    {
+        return null;
     }
 
 }

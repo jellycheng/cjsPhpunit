@@ -17,13 +17,11 @@
         </testsuite>
     </testsuites>
     <php>
-        <env name="APP_TEST_ENV" value="true"/>
-        <env name="NO_RESET_DB" value="true"/>
-        <env name="CACHE_DRIVER" value="array"/>
-        <env name="SESSION_DRIVER" value="array"/>
-        <env name="TEST_INVOKE_LOG_DIR" value="/tmp"/>
-        <env name="TEST_DEBUG" value="false" />
-        <env name="TEST_SCHEMAS_DIR" value="Tests/schemas" />
+        <env name="APP_TEST_ENV" value="dev"/>
+        <env name="APP_TEST_NO_RESET_DB" value="true"/>
+        <env name="APP_TEST_LOG_DIR" value="/tmp/"/>
+        <env name="APP_TEST_DEBUG" value="false" />
+        <env name="APP_TEST_SCHEMAS_DIR" value="Tests/schemas" />
     </php>
 
     <filter>

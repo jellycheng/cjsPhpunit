@@ -9,9 +9,14 @@ if(file_exists($fileAutoload)) {
     require_once $fileAutoload;
 }
 require_once dirname(__DIR__) . '/common.php';
+if(file_exists(__DIR__ . '/.env')){
+    \CjsPhpunit\EnvLoader::load(__DIR__);
+}
 
 if(\CjsPhpunit\env('APP_ENV', '') == 'production' || !\CjsPhpunit\env('APP_ENV', '')) {
-    //exit('不允许在生产环境或者不明确的环境下跑测试用例, 当前APP_ENV=' . \CjsPhpunit\env('APP_ENV', '') . PHP_EOL);
+    $msg = sprintf('不允许在生产环境或者不明确的环境下跑测试用例, 当前APP_ENV=%s', \CjsPhpunit\env('APP_ENV', ''));
+    \CjsPhpunit\printInfo($msg);
+    exit();
 }
 
 $testAppObj = \CjsPhpunit\TestApp::create()->setTestBasePath(__DIR__ . '/')->setFrameWorkType('phpunit');

@@ -16,5 +16,9 @@ class Phpunit {
         return 'welcome ' . $str;
     }
 
+    public function HelloWorld()
+    {
+        return 'hello world';
+    }
 
 }

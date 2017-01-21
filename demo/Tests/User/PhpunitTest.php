@@ -20,4 +20,17 @@ class PhpunitTest extends TestCaseBase {
 
     }
 
+
+    /**
+     * Hello world 用例
+     *
+     * 场景1 返回hello world
+     * @author jelly
+     */
+    public function testHelloWorld() {
+        $res = $this->invoke('\\AppDemo\\User\\Phpunit.helloWorld');
+        $this->assertEquals("hello world", $res);
+
+    }
+
 }

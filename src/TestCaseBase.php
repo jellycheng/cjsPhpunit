@@ -123,4 +123,50 @@ class TestCaseBase extends \PHPUnit_Framework_TestCase {
         }
     }
 
+    /**
+     * 在当前文件第1个测试用例类执行前执行，一般用于连接db及其它初始化
+     */
+    public static function setUpBeforeClass() {
+        //echo PHP_EOL . "current first test before " . PHP_EOL;
+        parent::setUpBeforeClass();
+
+    }
+
+    /**
+     * 在当前文件所有测试用例类执行完后执行
+     */
+    public static function tearDownAfterClass()
+    {
+        //echo PHP_EOL . "current file all test finsh " . PHP_EOL;
+        parent::tearDownAfterClass();
+
+    }
+
+    /**
+     * 每个测试用例执行前执行
+     * 一般用途： 开始计算时间，判断是否跳过当前用例，等
+     */
+    protected function setUp()
+    {
+        TestCaseCount::create()->addI();
+        $msg = sprintf('========================setup %s========================%s', TestCaseCount::create()->getI(), PHP_EOL);
+        TestApp::create()->getLog()->debugLog($msg);
+        Benchmark::start('set_up_tear_tag');
+        //echo PHP_EOL . 'setUp ' . PHP_EOL;
+        parent::setUp();
+        //标记跳过本次用例，执行单元测试加上 --verbose 参数会看到跳过原因
+        //$this->markTestSkipped('跳过本用例方法原因： MySQLi 扩展不可用');
+
+    }
+
+    /**
+     * 每个测试用例执行完毕后执行
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+        $msg = sprintf("========================消耗时间：%ss========================%s" , Benchmark::elapsed_time('set_up_tear_tag'), PHP_EOL);
+        TestApp::create()->getLog()->debugLog($msg);
+    }
+
 }

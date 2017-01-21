@@ -3,8 +3,6 @@ namespace CjsPhpunit;
 
 class Log {
 
-    protected static $_i = 1;
-
     public static function create() {
         static $instance = null;
         if(is_null($instance)) {
@@ -24,9 +22,8 @@ class Log {
         }
         $filename = sprintf("%sphpunit_%s.log", $logPath, date('Ymd'));
         $time = date('Y-m-d H:i:s');
-        $i = self::$_i++;
         if(is_array($args)) {
-            $msg = sprintf('========================%s start %s========================%s', $time, $i, PHP_EOL);
+            $msg = sprintf("%s", $time);
             foreach ($args as $k=>$v) {
                 if(is_array($v)) {
                     $msg .= "\t" . var_export($v, true);
@@ -34,8 +31,7 @@ class Log {
                     $msg .= "\t" . $v;
                 }
             }
-            $msg .= sprintf('%s========================%s end %s========================%s', PHP_EOL, $time, $i, PHP_EOL);
-            file_put_contents($filename, $msg, FILE_APPEND);
+            file_put_contents($filename, $msg . PHP_EOL, FILE_APPEND);
         }
 
     }

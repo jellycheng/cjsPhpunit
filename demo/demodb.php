@@ -15,3 +15,11 @@ if ($pdoObj->errorCode() && $pdoObj->errorCode()!="00000") {
 } else {
     echo 'ok' . PHP_EOL;
 }
+
+/**
+show databases like 'db_user';
+drop database if exists test_db_user;
+create database test_db_user;
+truncate 表名;
+$sql = "INSERT INTO {$table_name} ({$keys_list}) VALUES ({$params_list})";
+ */

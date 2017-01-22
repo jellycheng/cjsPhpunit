@@ -44,19 +44,15 @@ class TestCaseBase extends \PHPUnit_Framework_TestCase {
     protected function importPHPFixture($fixture_file, $fixture_type)
     {
         $data_set = require $fixture_file;
-        foreach ($data_set as $name => $rows) {
-            // 插入数据
-            //$this->insertFixtureTable($name, $rows, $fixture_type);
-        }
+        // 插入数据
+        $this->insertFixtureTable($data_set, $fixture_type);
     }
 
     protected function importJsonFixture($fixture_file, $fixture_type)
     {
         $data_set = json_decode(file_get_contents($fixture_file), true);
-        foreach ($data_set as $name => $rows) {
-            // 插入数据
-            //$this->insertFixtureTable($name, $rows, $fixture_type);
-        }
+        // 插入数据
+        $this->insertFixtureTable($data_set, $fixture_type);
     }
 
     protected function importYamlFixture($yml_file, $fixture_type)
@@ -71,9 +67,19 @@ class TestCaseBase extends \PHPUnit_Framework_TestCase {
                 $row = $data->getRow($i);
                 array_push($rows, $row);
             }
-            // 插入数据
-            //$this->insertFixtureTable($name, $rows, $fixture_type);
+            // 插入一条数据
+            $this->insertFixtureData($name, $rows, $fixture_type);
         }
+    }
+
+    protected function insertFixtureTable($data, $fixture_type)
+    {
+
+    }
+
+    protected function insertFixtureData($db_tblname, $rows, $fixture_type)
+    {
+
     }
 
     protected function invoke()

@@ -36,3 +36,32 @@ wget https://phar.phpunit.de/phpunit.phar
 ```
 
 
+```
+<php>
+    <env name="APP_TEST_ENV" value="dev"/>设置php的$_ENV值
+</php>
+<php>
+  <ini name="foo" value="bar"/>
+  <const name="foo" value="bar"/>
+  <var name="foo" value="bar"/>
+  <env name="foo" value="bar"/>
+  <post name="foo" value="bar"/>
+  <get name="foo" value="bar"/>
+  <cookie name="foo" value="bar"/>
+  <server name="foo" value="bar"/>
+  <files name="foo" value="bar"/>
+  <request name="foo" value="bar"/>
+</php>
+以上xml配置对应php代码如下：
+ini_set('foo', 'bar');
+define('foo', 'bar');
+$GLOBALS['foo'] = 'bar';
+$_ENV['foo'] = 'bar';
+$_POST['foo'] = 'bar';
+$_GET['foo'] = 'bar';
+$_COOKIE['foo'] = 'bar';
+$_SERVER['foo'] = 'bar';
+$_FILES['foo'] = 'bar';
+$_REQUEST['foo'] = 'bar';
+```
+

@@ -4,7 +4,12 @@ namespace CjsPhpunit;
 class TestApp {
 
     protected static $instance = null;
-    protected $path = [];
+    protected $path = [
+                            'schemaPath'=>'',
+                            'basePath'=>'',
+                            'logPath'=>'',
+                            'fixturesPath'=>'',
+                        ];
     protected $frameWorkType = 'lsf'; //框架类型
     protected $log;
 
@@ -31,7 +36,7 @@ class TestApp {
     }
 
     public function getTestBasePath() {
-        if(isset($this->path['basePath'])) {
+        if(isset($this->path['basePath']) && $this->path['basePath']) {
             return $this->path['basePath'];
         }
         return '';
@@ -43,7 +48,7 @@ class TestApp {
     }
 
     public function getTestFixturesPath() {
-        if(isset($this->path['fixturesPath'])) {
+        if(isset($this->path['fixturesPath']) && $this->path['fixturesPath']) {
             return $this->path['fixturesPath'];
         }
         return $this->getTestBasePath() . 'fixtures/';
@@ -56,7 +61,7 @@ class TestApp {
     }
 
     public function getTestSchemaPath() {
-        if(isset($this->path['schemaPath'])) {
+        if(isset($this->path['schemaPath']) && $this->path['schemaPath']) {
             return $this->path['schemaPath'];
         }
         return $this->getTestBasePath() . 'schemas/';

@@ -1,7 +1,10 @@
 
-/**********test_user_db****************/
+# test_user_db
 
-/**用户表*/
+-- select version() as version
+
+#用户表
+DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
   `iAutoID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `sUserName` varchar(30) DEFAULT '',

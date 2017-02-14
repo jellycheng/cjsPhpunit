@@ -20,5 +20,5 @@ if(\CjsPhpunit\env('APP_ENV', '') == 'production' || !\CjsPhpunit\env('APP_ENV',
 }
 
 $testAppObj = \CjsPhpunit\TestApp::create()->setTestBasePath(__DIR__ . '/')->setFrameWorkType('phpunit');
-$testAppObj = $testAppObj->setLog(\CjsPhpunit\Log::create())->setPath('logPath', __DIR__ . '/Logs/');
+$testAppObj->setLog(\CjsPhpunit\Log::create())->setPath('logPath', __DIR__ . '/Logs/');
 

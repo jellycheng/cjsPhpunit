@@ -22,4 +22,6 @@ drop database if exists test_db_user;
 create database test_db_user;
 truncate 表名;
 $sql = "INSERT INTO {$table_name} ({$keys_list}) VALUES ({$params_list})";
+select version() as version
+ *
  */
